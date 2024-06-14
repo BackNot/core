@@ -1,6 +1,8 @@
 name: Generate Web Markdown
 on:
   push:
+    branches:
+      - develop
     paths:
       - '.github/workflows/*.yml'
       - 'model/**/*.yml'
