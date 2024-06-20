@@ -74,6 +74,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.OWASP_SAMM_WEBSITE_TOKEN }}
-          repository: owaspsamm/website
+          repository: BackNot/website
           event-type: samm-core-released
           client-payload: '{"release": "${{ github.ref_name }}"}'
