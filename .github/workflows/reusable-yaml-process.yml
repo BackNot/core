@@ -1,0 +1,44 @@
+name: Reusable workflow to convert yaml files to markdown
+
+on:
+  workflow_call:
+    inputs:
+      language:
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
+      model_folder:
+        required: true
+        type: string
+jobs:
+  generate-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout using release is workflow dispatched'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.branch }}
+      - name: 'Create output dir and copy files to override spaces in directories'
+        run: |
+          mkdir output
+      - name: 'Generate model for website'
+        uses: docker://backnot/owasp-samm-process-yaml-content:latest
+        with:
+          args: '-d ${{ inputs.model_folder }} -o output -l ${{ inputs.language }}'
+      - name: 'Move generated files to common directory structure'
+        run: |
+          mkdir -p build/business-function/practice/stream
+          BASE=output/markdown
+          cp "$BASE"/{Design.md,Governance.md,Implementation.md,Operations.md,Verification.md} build/business-function
+          cp "$BASE"/*-??-?.md build/business-function/practice/stream
+          cp "$BASE"/*-??.md build/business-function/practice
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: markdown
+          FOLDER: build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SQUASH_HISTORY: false
