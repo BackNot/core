@@ -58,6 +58,8 @@ jobs:
             This happens to ensure that the updates that happened on the release branch, i.e. CHANGELOG and manifest updates are also present on the develop branch.
       - name: Passing release information for next job
         id: releaseInfo
+        env:
+          BRANCH_NAME: "${{ github.event.pull_request.head.ref }}"
         run: |
             echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
             echo "RELEASE_VERSION=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
