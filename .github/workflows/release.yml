@@ -58,12 +58,14 @@ jobs:
             This happens to ensure that the updates that happened on the release branch, i.e. CHANGELOG and manifest updates are also present on the develop branch.
       - name: Passing release information for next job
         id: releaseInfo
+        env:
+          BRANCH_NAME: "${{ github.event.pull_request.head.ref }}"
         run: |
             echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
             echo "RELEASE_VERSION=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
   generate-markdown-build-website:
     needs: release
-    uses: BackNot/core/.github/workflows/yaml-process.yml@e83012e581f880de315c05986f1b7a5d359baff0
+    uses: BackNot/core/.github/workflows/yaml-process.yml@35642e8c0221cfa16ba34a81cefb22801763435d
     with:
       release: ${{ needs.release.outputs.BRANCH_NAME }}
       release_name: ${{ needs.release.outputs.RELEASE_VERSION }}
