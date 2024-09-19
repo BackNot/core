@@ -65,7 +65,7 @@ jobs:
             echo "RELEASE_VERSION=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
   generate-markdown-build-website:
     needs: release
-    uses: BackNot/core/.github/workflows/yaml-process.yml@0fabd9529ffcdc1d50948de09106e9e5a9b94012
+    uses: BackNot/core/.github/workflows/yaml-process.yml@f8ba7cbfdb1673ca5b2b51fc95ab783b5c426848
     secrets: inherit
     with:
       release: ${{ needs.release.outputs.BRANCH_NAME }}
