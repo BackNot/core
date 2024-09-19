@@ -53,3 +53,8 @@ jobs:
           body: |
             This PR merges the main branch back into develop.
             This happens to ensure that the updates that happened on the release branch, i.e. CHANGELOG and manifest updates are also present on the develop branch.
+  generate-markdown-build-website:
+    uses: BackNot/core/.github/workflows/yaml-process.yml@711aad1b41f08d8d60eac40177af8f4cb7241e53
+    with:
+      release: ${{ env.BRANCH_VERSION }}
+      release_name: ${{ env.RELEASE_VERSION }}
