@@ -7,6 +7,9 @@ on:
       - closed
 jobs:
   release:
+    outputs:
+      BRANCH_NAME: ${{ steps.releaseInfo.outputs.BRANCH_NAME }}
+      RELEASE_VERSION: ${{ steps.releaseInfo.outputs.RELEASE_VERSION }}
     name: Publish new release
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true     # only merged pull requests must trigger this job
@@ -53,8 +56,14 @@ jobs:
           body: |
             This PR merges the main branch back into develop.
             This happens to ensure that the updates that happened on the release branch, i.e. CHANGELOG and manifest updates are also present on the develop branch.
+      - name: Passing release information for next job
+        id: releaseInfo
+        run: |
+            echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
+            echo "RELEASE_VERSION=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
   generate-markdown-build-website:
+    needs: release
     uses: BackNot/core/.github/workflows/yaml-process.yml@711aad1b41f08d8d60eac40177af8f4cb7241e53
     with:
-      release: ${{ env.BRANCH_VERSION }}
-      release_name: ${{ env.RELEASE_VERSION }}
+      release: ${{ needs.release.outputs.BRANCH_NAME }}
+      release_name: ${{ needs.release.outputs.RELEASE_VERSION }}
