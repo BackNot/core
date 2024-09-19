@@ -13,7 +13,7 @@ level: a11b78917dec4cfdad983cf6d1d17b61
 id: 27bb61f3c6344359b021caeaef5ab07e
 
 #The title of this activity
-title: Adhere to basic security principlesss
+title: Adhere to basic security principles
 
 #Describe the benefit that is achieved by implementing this activity
 benefit: Sets of security basic principles available to product teams
@@ -23,7 +23,7 @@ shortDescription: Teams are trained on the use of basic security principles duri
 
 #A multi-paragraph description of the activity
 longDescription: |
-  During design, technical staff on the product team use a short checklist of security principles. Typically, security principles include defense in depth, securing the weakest link, use of secure defaults, simplicity in design of security functionality, secure failure, balance of security and usability, running with least privilege, avoidance of security by obscurity, etc.
+  During designo7914, technical staff on the product team use a short checklist of security principles. Typically, security principles include defense in depth, securing the weakest link, use of secure defaults, simplicity in design of security functionality, secure failure, balance of security and usability, running with least privilege, avoidance of security by obscurity, etc.
 
   For perimeter interfaces, the team considers each principle in the context of the overall system and identifies features that can be added to bolster security at each such interface. Limit these such that they only take a small amount of extra effort beyond the normal implementation cost of functional requirements. Note anything larger, and schedule it for future releases.
 
