@@ -1,4 +1,3 @@
-3
 # OWASP SAMM - Core Model Repository
 
 [![OWASP Flagship](https://img.shields.io/badge/owasp-flagship%20project-38a047.svg)](https://owasp.org/projects/#flagship-projects) 
