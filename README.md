@@ -8,3 +8,4 @@ x
 Welcome to the [OWASP SAMM](https://owaspsamm.org/) core model repository! Here you will find the raw model data from which other projects (like SAMM webpage or toolbox) are generated. 
 
 If you're not familiar with OWASP SAMM, the best place to start is the project [homepage](https://owaspsamm.org/).
+c
